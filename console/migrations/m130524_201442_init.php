@@ -4,7 +4,9 @@ use yii\db\Migration;
 
 class m130524_201442_init extends Migration
 {
-    public function up()
+
+    const  UCAN_TBL='{{%user}}';
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -12,7 +14,7 @@ class m130524_201442_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%user}}', [
+        $this->createTable(self::UCAN_TBL, [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
@@ -26,8 +28,8 @@ class m130524_201442_init extends Migration
         ], $tableOptions);
     }
 
-    public function down()
+    public function safeDown()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable(self::UCAN_TBL);
     }
 }
