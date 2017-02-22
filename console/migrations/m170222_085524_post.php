@@ -34,6 +34,7 @@ class m170222_085524_post extends Migration
             'title' => $this->string(128)->notNull(),
             'content' => $this->text()->notNull(),
             'tags' => $this->text(),
+            'status'=>$this->integer(11)->notNull(),
             'create_time' => $this->integer(11)->defaultValue(null),
             'update_time' => $this->integer(11)->defaultValue(null),
             'author_id' => $this->integer(11)->notNull(),
