@@ -52,9 +52,11 @@ class m170223_031919_valinit2 extends Migration
 
     public function safeDown()
     {
-        echo "m170223_031919_valinit2 cannot be reverted.\n";
+        $this->delete('commentstatus');
+        $this->delete('poststatus');
+        /*echo "m170223_031919_valinit2 cannot be reverted.\n";
 
-        return false;
+        return false;*/
     }
 
     /*
