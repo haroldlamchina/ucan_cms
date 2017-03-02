@@ -10,6 +10,7 @@ namespace console\controllers;
 
 use yii\console\Controller;
 use common\models\user;
+use common\models\adminuser;
 
 class InitController extends Controller
 {
@@ -50,10 +51,12 @@ class InitController extends Controller
     {
         echo "Create init adminuser ...\n";                  // 提示当前操作
         $username = $this->prompt('adminuser Name:');        // 接收用户名
+        $nickname = $this->prompt('nickname:');        // 接收昵称
         $email = $this->prompt('Email:');               // 接收Email
         $password = $this->prompt('Password:');         // 接收密码
-        $model = new User();                            // 创建一个新用户
+        $model = new adminuser();                            // 创建一个新用户
         $model->username = $username;                   // 完成赋值
+        $model->nickname=$nickname;
         $model->email = $email;
         $model->password = $password;
         $model->generateAuthKey();                     //自动创建auth_key
