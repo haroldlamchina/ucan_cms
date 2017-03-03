@@ -9,12 +9,12 @@
            'created_at' => Yii::t('common/user', 'Created At'),
            'updated_at' => Yii::t('common/user', 'Updated At'),*/
 return [
-    'forgot_login'=>'如果忘记密码，你可以',
-    'reset'=>'重置',
-    'login'=>'登录',
-    'loginMsg'=>'请填写以下字段登录:',
-    'logout'=>'登出',
-    //提示   notice post
-    'statusSelect'=>'请选择状态',
-    'authorSelect'=>'请选择作者',
+    'ID'=>'编号',
+    'Title'=>'标题',
+    'Content'=>'文章内容',
+    'Tags'=>'标签',
+    'Create Time'=>'创建时间',
+    'Update Time'=>'更新时间',
+    'Author ID'=>'作者编号',
+    'Status'=>'状态',
 ];
