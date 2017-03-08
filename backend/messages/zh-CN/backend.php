@@ -12,6 +12,7 @@ return [
     'Comments'=>'评论管理',
     'Users'=>'用户管理',
     'Create Post'=>'创建文章',
+    'Create Comment'=>'创建评论',
     'Update'=>'更新',
     'Create'=>'修改',
 
