@@ -8,6 +8,7 @@ use common\models\AdminuserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\ResetpwdForm;
 
 /**
  * AdminuserController implements the CRUD actions for Adminuser model.
@@ -120,5 +121,22 @@ class AdminuserController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    //重置密码
+    public function actionResetpwd($id)
+    {
+        $model = new ResetpwdForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->resetPassword($id)){
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('resetpwd', [
+            'model' => $model,
+        ]);
+
     }
 }

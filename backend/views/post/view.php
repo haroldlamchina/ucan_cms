@@ -32,10 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'content:ntext',
             'tags:ntext',
-            'create_time:datetime',
-            'update_time:datetime',
-            'author_id',
-            'status',
+            [
+                'attribute'=>'create_time',
+                'value'=>date("Y-m-d H:i:s",$model->create_time),
+            ],
+            [
+                'attribute'=>'update_time',
+                'value'=>date("Y-m-d H:i:s",$model->update_time),
+            ],
+            [
+                'attribute'=>'author_id',
+                'value'=>$model->author->nickname,
+            ],
+            [
+                'label'=>yii::t('common/post','Status'),
+                'value'=>$model->status0->name,
+            ],
         ],
     ]) ?>
 

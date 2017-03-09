@@ -39,6 +39,7 @@ AppAsset::register($this);
         ['label' => yii::t('backend','Post'), 'url' => ['/post/index']],
         ['label' => yii::t('backend','Comment'), 'url' => ['/comment/index']],
         ['label' => yii::t('backend','User'), 'url' => ['/user/index']],
+        ['label' => yii::t('backend','Adminuser'), 'url' => ['/adminuser/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => yii::t('common','login'), 'url' => ['/site/login']];

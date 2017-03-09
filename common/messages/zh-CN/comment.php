@@ -1,16 +1,16 @@
 <?php
-
 return [
-    'Id' => '标识',
-    'Section' => '章节',
-    'Parent' => '父评论',
-    'Status' => '状态',
-    'Comment Mode' => '评论模式',
-    'Comment Num' => '评论数',
-    'Content' => '内容',
-    'Ver' => '版本',
-    'Created At' => '创建于',
-    'Updated At' => '更新于',
-    'Created By' => '创建者',
-    'Updated By' => '更新者',
+    'ID' => '标识',
+    'Content' => '评论内容',
+    'Status' => '评论状态',
+    'Create Time' => '创建时间',
+    'Userid' => '评论人',
+    'Email' => 'E—mail',
+    'Url' => 'url',
+    'Post ID' => '评论文章',
+    'approve'=>'审核',
+    'Are you sure you pass this comment?'=>'你确定通过这条评论吗？',
+    'username'=>'作者',
+
+
 ];
