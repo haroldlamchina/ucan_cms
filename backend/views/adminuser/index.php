@@ -22,20 +22,45 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'username',
             'nickname',
-            'auth_key',
-            'password_hash',
+            //'auth_key',
+            //'password_hash',
             // 'password_reset_token',
-            // 'email:email',
+            'email:email',
             // 'status',
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template'=>'{view} {update} {resetpwd} {privilege}',
+                'buttons'=>[
+                    'resetpwd'=>function($url,$model,$key)
+                    {
+                        $options=[
+                            'title'=>Yii::t('backend','resetpassword'),
+                            'aria-label'=>Yii::t('backend','resetpassword'),
+                            'data-pjax'=>'0',
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-lock"></span>',$url,$options);
+                    },
+
+                    'privilege'=>function($url,$model,$key)
+                    {
+                        $options=[
+                            'title'=>Yii::t('backend','Role permission'),
+                            'aria-label'=>Yii::t('backend','Role permission'),
+                            'data-pjax'=>'0',
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-user"></span>',$url,$options);
+                    },
+
+                ],
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

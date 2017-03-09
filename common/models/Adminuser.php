@@ -201,6 +201,12 @@ class Adminuser extends \yii\db\ActiveRecord  implements IdentityInterface
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
+
+    public function updatePassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
     /**
      * Generates "remember me" authentication key
      */

@@ -30,5 +30,6 @@ return [
     'Password Reset Token'=>'重置密码',
     'Created At'=>'创建时间',
     'Updated At'=>'修改时间',
+    'Two input passwords are inconsistent!'=>'两次输入的密码不一致',
 
 ];
