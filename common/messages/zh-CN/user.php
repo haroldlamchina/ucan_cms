@@ -17,4 +17,14 @@ return [
     //login
     'password'=>'密码',
     'rememberMe'=>'记住登录',
+    'ID'=>'编号',
+    'Username' => '用户名称',
+    'Nickname' => '昵称',
+    'Email' => '邮件',
+    'Status' => '状态',
+    //login
+    'Password Hash'=>'密码',
+    'Password Reset Token'=>'重置密码',
+    'Created At'=>'创建时间',
+    'Updated At'=>'修改时间',
 ];

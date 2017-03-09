@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\AdminuserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('backend', 'Create Adminuser'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -27,9 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             'nickname',
-            'password',
             'auth_key',
-            // 'password_hash',
+            'password_hash',
             // 'password_reset_token',
             // 'email:email',
             // 'status',
@@ -39,4 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+<?php Pjax::end(); ?></div>

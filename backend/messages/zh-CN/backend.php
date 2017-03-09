@@ -7,6 +7,7 @@ return [
     'Post'=>'文章管理',
     'Comment'=>'评论管理',
     'User'=>'用户管理',
+    'Adminuser'=>'管理员管理',
     //post
     'Posts'=>'文章管理',
     'Comments'=>'评论管理',
