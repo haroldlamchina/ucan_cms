@@ -17,13 +17,17 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\Adminuser',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
+        ],
+        'request'=>[
+            'cookieValidationKey'=>'sdfjjksloeedf78789judf',
+            'csrfParam'=>'_adminCSRF',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

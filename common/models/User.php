@@ -210,4 +210,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public  function getStatusStr()
+    {
+        return $this->status==self::STATUS_ACTIVE?'正常':'已删除';
+    }
+
+    public static function allStatus()
+    {
+        return [self::STATUS_ACTIVE=>'正常',self::STATUS_DELETED=>'已删除'];
+    }
 }

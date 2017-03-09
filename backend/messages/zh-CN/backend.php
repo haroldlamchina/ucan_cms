@@ -16,6 +16,7 @@ return [
     'Create Post'=>'创建文章',
     'Create Comment'=>'创建评论',
     'Create Adminuser'=>'管理员管理',
+    'Create User'=>'创建用户',
     'Update'=>'更新',
     'Create'=>'修改',
     'resetpassword'=>'重置密码',
