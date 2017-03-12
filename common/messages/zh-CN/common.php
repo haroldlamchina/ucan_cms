@@ -17,4 +17,12 @@ return [
     //提示   notice post
     'statusSelect'=>'请选择状态',
     'authorSelect'=>'请选择作者',
+
+
+    'Logout'=>'登出',
+    'Login'=>'登录',
+    'Signup'=>'注册',
+    'Home'=>'首页',
+    'About'=>'关于我们',
+    'Contact'=>'联系我们',
 ];
