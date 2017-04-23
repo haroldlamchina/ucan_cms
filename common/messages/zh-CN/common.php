@@ -25,4 +25,7 @@ return [
     'Home'=>'首页',
     'About'=>'关于我们',
     'Contact'=>'联系我们',
+    'Sitename'=>'U_CAN',
+    'Powered by {u_can}'=>'By {u_can}',
+    'admin'=>'Haroldlam',
 ];

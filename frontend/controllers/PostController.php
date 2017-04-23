@@ -1,19 +1,24 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\Comment;
-use common\models\CommentSearch;
+use common\models\Post;
+use common\models\Postsearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use common\models\tag;
+use common\models\comment;
+use common\models\user;
+
 /**
- * CommentController implements the CRUD actions for Comment model.
+ * PostController implements the CRUD actions for Post model.
  */
-class CommentController extends Controller
+class PostController extends Controller
 {
+    public $added=0; //0代表还没有新回复
     /**
      * @inheritdoc
      */
@@ -30,22 +35,62 @@ class CommentController extends Controller
     }
 
     /**
-     * Lists all Comment models.
+     * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CommentSearch();
+        $tags=Tag::findTagWeights();
+        $recentComments=Comment::findRecentComments();
+        $searchModel = new Postsearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tags'=>$tags,
+            'recentComments'=>$recentComments,
+
         ]);
     }
 
+
+    public function actionDetail($id)
+    {
+        //step 1   获取数据模型
+        $model=$this->findModel($id);
+        $tags=tag::findTagWeights();
+        $recentComments=comment::findRecentComments();
+
+        $userMe = User::findOne(Yii::$app->user->id);
+        $commentModel = new Comment();
+        $commentModel->email = $userMe->email;
+        $commentModel->userid = $userMe->id;
+
+        //step2. 当评论提交时，处理评论
+        if($commentModel->load(Yii::$app->request->post()))
+        {
+            $commentModel->status = 1; //新评论默认状态为 pending
+            $commentModel->post_id = $id;
+            if($commentModel->save())
+            {
+                $this->added=1;
+            }
+        }
+        //step 3   渲染模版
+        return $this->render('detail', [
+            'model'=>$model,
+            'tags'=>$tags,
+            'recentComments'=>$recentComments,
+            'commentModel'=>$commentModel,
+            'added'=>$this->added,
+
+        ]);
+
+    }
+
     /**
-     * Displays a single Comment model.
+     * Displays a single Post model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +102,13 @@ class CommentController extends Controller
     }
 
     /**
-     * Creates a new Comment model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Comment();
+        $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +120,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Updates an existing Comment model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +139,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Deletes an existing Comment model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -106,24 +151,16 @@ class CommentController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionApprove($id)
-    {
-        $model=$this->findModel($id);
-        if($model->approve())
-        {
-            return $this->redirect(['index']);
-        }
-    }
     /**
-     * Finds the Comment model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Comment the loaded model
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Comment::findOne($id)) !== null) {
+        if (($model = Post::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

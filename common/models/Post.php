@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\html;
 
 /**
  * This is the model class for table "{{%post}}".
@@ -70,6 +71,12 @@ class Post extends \yii\db\ActiveRecord
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id']);
+    }
+
+    public function getActiveComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'id'])
+            ->where('status=:status',[':status'=>2])->orderBy('id DESC');
     }
 
     /**
